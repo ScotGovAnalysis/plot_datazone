@@ -33,7 +33,7 @@ server <- function(input, output) {
         
         postcode <- eventReactive(input$go, {
             toupper(gsub(" ", "", input$postcode, fixed = TRUE))
-            })
+            }, ignoreNULL = FALSE)
         
         endpoint <- "http://statistics.gov.scot/sparql"
         
@@ -68,8 +68,9 @@ server <- function(input, output) {
         # Plot the shapefile with tmap
         tmap_mode(mode = "view")
         
-        tm <- tm_shape(dz) +
-            tm_polygons(alpha = 0)
+        tm <- tm_basemap(leaflet::providers$OpenStreetMap) +
+            tm_shape(dz) +
+            tm_borders(lwd = 4)
         
         tmap_leaflet(tm)
         
