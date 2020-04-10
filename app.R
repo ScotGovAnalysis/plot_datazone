@@ -53,18 +53,18 @@ server <- function(input, output) {
                 
                 # Build the query
                 # Add `DataZone='XXXXXXXXX'` to the `Where:` field where XXXXXXXXX is a DataZone code
-                # Add all the available fields (listed on the previous page) to the `Out Fields:` field: OBJECTID_1, OBJECTID, DataZone, Name, TotPop2011, ResPop2011, HHCnt2011, StdAreaHa, StdAreaKm2, Shape_Leng, Shape, Shape.STArea(), Shape.STLength()
+                # Add the available fields you want (listed on the previous page) to the `Out Fields:` field: OBJECTID, DataZone, Name, TotPop2011, ResPop2011, HHCnt2011, StdAreaHa, StdAreaKm2, Shape_Leng, Shape, Shape.STArea(), Shape.STLength()
                 # Select `Format:` as GeoJSON
                 # Click `Query(GET)`
             
                 # Copy and paste the URL into `sf::st_read` like this:
-                # dz <- st_read("http://sedsh127.sedsh.gov.uk/arcgis/rest/services/ScotGov/StatisticalUnits/MapServer/2/query?where=DataZone%3D%27S01009308%27&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelWithin&relationParam=&outFields=OBJECTID_1%2C+OBJECTID%2C+DataZone%2C+Name%2C+TotPop2011%2C+ResPop2011%2C+HHCnt2011%2C+StdAreaHa%2C+StdAreaKm2%2C+Shape_Leng%2C+Shape%2C+Shape.STArea%28%29%2C+Shape.STLength%28%29&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&resultOffset=&resultRecordCount=&f=geojson")
+                # dz <- st_read("http://sedsh127.sedsh.gov.uk/arcgis/rest/services/ScotGov/StatisticalUnits/MapServer/2/query?where=DataZone%3D%27S01009308%27&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=OBJECTID%2C+DataZone%2C+Name%2C+Shape&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&resultOffset=&resultRecordCount=&f=geojson")
         
         dz <- st_read(paste0("http://sedsh127.sedsh.gov.uk/arcgis/rest/services/ScotGov/StatisticalUnits/MapServer/2/query?",
                              "where=DataZone%3D%27",
                              dz_code,
-                             "%27&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelWithin&relationParam=&outFields=OBJECTID_1%2C+OBJECTID%2C+DataZone%2C+Name%2C+TotPop2011%2C+ResPop2011%2C+HHCnt2011%2C+StdAreaHa%2C+StdAreaKm2%2C+Shape_Leng%2C+Shape%2C+Shape.STArea%28%29%2C+Shape.STLength%28%29&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&resultOffset=&resultRecordCount=&f=geojson"))
-        
+                             "%27&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=OBJECTID%2C+DataZone%2C+Name%2C+Shape&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&resultOffset=&resultRecordCount=&f=geojson"))
+
         # Plot the shapefile with tmap
         tmap_mode(mode = "view")
         
