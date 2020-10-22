@@ -4,3 +4,6 @@
 The data zone for the given postcode is found by querying the SPARQL endpoint of [statistics.gov.scot](statistics.gov.scot). The data zone shapefile is then downloaded from [spatialdata.gov.scot](spatialdata.gov.scot) and plotted with [tmap](https://github.com/mtennekes/tmap).
 
 ![Screenshot of the R Shiny app](Screenshot.png)
+
+## Licence
+This repository is available under the [Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
